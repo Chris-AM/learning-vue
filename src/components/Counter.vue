@@ -11,10 +11,20 @@
 <script>
 export default {
     name: 'Counter',
-    props: ['title'],
+    props: {
+        title: String,
+        start: {
+            type: Number,
+            default: 1,
+            validator ( value ) {
+                return value >= 0;
+            }
+            //required: true,
+        }
+    },
     data() {
         return {
-            count: 0
+            count: this.start
         }
     },
     methods: {
