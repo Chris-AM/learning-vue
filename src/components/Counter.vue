@@ -1,10 +1,10 @@
 <template>
     <h2>{{ customTitle }}</h2>
-    <h3>With methods</h3>
     <p>{{ count }} <sup>2</sup> = {{ squareValue }}</p>
-    <div>
-        <button @click="increase" >+1</button>
-        <button @click="decrease">-1</button>
+    <p  data-testid="counter">{{ count }}</p>
+    <div class="buttons-container">
+        <button data-testid="increase" @click="increase" >+1</button>
+        <button data-testid="decrease" @click="decrease" >-1</button>
     </div>
 </template>
 
