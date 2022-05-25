@@ -30,16 +30,23 @@ export default {
     },
     methods: {
         async getAnswer () {
-            this.answer = "Thinking ..."
-            const {answer, image} = await fetch('https://yesno.wtf/api').then(r => r.json());
-            //console.log('{answer, image} ===> ', {answer, image})
-            this.answer = answer;
-            this.img = image;
+            try {
+                this.answer = "Thinking ..."
+                const {answer, image} = await fetch('https://yesno.wtf/api').then(r => r.json());
+                //console.log('{answer, image} ===> ', {answer, image})
+                this.answer = answer;
+                this.img = image;
+            } catch (error) {
+                console.log('Indecision component: ', error)
+                this.answer = 'Internal Server Error'
+                this.img = null;
+            }
         }
     },
     watch: {
         question( value, oldvalue ){
             this.isAValidQuestion = false;
+            console.log('value ===> ', {value});
             if(!value.includes('?')) return;
             this.isAValidQuestion = true;
             this.getAnswer();
